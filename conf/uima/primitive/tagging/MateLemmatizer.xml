@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>de.aitools.ie.uima.analysis.tagging.MateLemmatizer</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>MateLemmatizer</name>
+    <description>Wrapper of the very effective Mate Tools Lemmatizer that classifies lemmas based on a large margin model (Björkelund et. al., COLING 2010).  
+
+Requires token and sentence annotations and produces the lemma features of the token annotations.
+
+Targets at well-formatted texts, but should also work with other texts. 
+
+For more details, see http://code.google.com/p/mate-tools/.</description>
+    <version>1.0</version>
+    <vendor>Webis</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>model</name>
+        <description>The location of the model of the lemmatizer.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>model</name>
+        <value>
+          <array>
+            <string>models/CoNLL2009-ST-English-ALL.anna-3.3.lemmatizer.model</string>
+            <string>data/models/CoNLL2009-ST-English-ALL.anna-3.3.lemmatizer.model</string>
+          </array>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import location="../../typesystems/CoreTypeSystem.xml"/>
+      </imports>
+    </typeSystemDescription>
+    <typePriorities>
+      <priorityList>
+        <type>de.aitools.ie.uima.type.core.Sentence</type>
+        <type>de.aitools.ie.uima.type.core.Token</type>
+      </priorityList>
+    </typePriorities>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs>
+          <type>de.aitools.ie.uima.type.core.Token</type>
+          <type allAnnotatorFeatures="true">de.aitools.ie.uima.type.core.Sentence</type>
+          <feature>de.aitools.ie.uima.type.core.Token:end</feature>
+          <feature>de.aitools.ie.uima.type.core.Token:begin</feature>
+          <feature>de.aitools.ie.uima.type.core.Token:sofa</feature>
+        </inputs>
+        <outputs>
+          <type>de.aitools.ie.uima.type.core.Token</type>
+          <feature>de.aitools.ie.uima.type.core.Token:lemma</feature>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

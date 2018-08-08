@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>de.aitools.ie.uima.analysis.tagging.MatePartOfSpeechTagger</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>MatePartOfSpeechTagger</name>
+    <description>Wrapper of the very effective Mate Tools Part-of-Speech Tagger that classifies part-of-speech tags based on a large margin model (Björkelund et. al., COLING 2010).  
+
+Requires token annotations with lemmas and sentence annotations and produces the part-of-speech features of the token annotations.
+
+Targets at well-formatted texts, but should also work with other texts. 
+
+Models exist for different languages including English and German. Some models might need to be obtained from the Mate Tools website first.
+
+The model can be set via a respective parameter in this descriptor. Be sure that the path matches your file structure.
+
+For more details, see http://code.google.com/p/mate-tools/.
+
+
+TAGS FOR INTERNAL USE
+
+@AverageSentenceResponseTime 10.75
+@Accuracy 0.98</description>
+    <version>1.0</version>
+    <vendor>InfexBA</vendor>
+    <configurationParameters searchStrategy="language_fallback">
+      <configurationParameter>
+        <name>MateToolsPOSTaggerModel</name>
+        <description>The location of the model of the part-of-speech tagger.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>MateToolsPOSTaggerModel</name>
+        <value>
+          <array>
+            <string>../../software_code-in-progress_thirdparty/thirdparty-mate-3.0/tag-eng.model</string>
+            <string>../software_code-in-progress_thirdparty/thirdparty-mate-3.0/tag-eng.model</string>
+            <string>../../thirdparty/thirdparty-mate-3.0/tag-eng.model</string>
+            <string>../thirdparty/thirdparty-mate-3.0/tag-eng.model</string>
+          </array>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import location="../../type-systems/CoreTypeSystem.xml"/>
+      </imports>
+    </typeSystemDescription>
+    <typePriorities>
+      <priorityList>
+        <type>de.aitools.ie.uima.type.core.Sentence</type>
+        <type>de.aitools.ie.uima.type.core.Token</type>
+      </priorityList>
+    </typePriorities>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs>
+          <type>de.aitools.ie.uima.type.core.Token</type>
+          <type allAnnotatorFeatures="true">de.aitools.ie.uima.type.core.Sentence</type>
+          <feature>de.aitools.ie.uima.type.core.Token:lemma</feature>
+        </inputs>
+        <outputs>
+          <type>de.aitools.ie.uima.type.core.Token</type>
+          <feature>de.aitools.ie.uima.type.core.Token:pos</feature>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

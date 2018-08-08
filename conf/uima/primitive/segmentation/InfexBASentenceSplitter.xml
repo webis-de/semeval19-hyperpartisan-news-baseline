@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+<frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+<primitive>true</primitive>
+<annotatorImplementationName>de.aitools.ie.uima.analysis.segmentation.InfexBASentenceSplitter</annotatorImplementationName>
+<analysisEngineMetaData>
+<name>InfexBASentenceSplitter</name>
+<description>Rather effective but still efficient rule-based sentence splitter that was developed in the InfexBA project and improved in the ArguAna project later on. 
+
+Does not require any input annotations and produces sentence annotations.
+
+Targets at news articles primarily, but should also work well with less well-formatted texts likes reviews. Works with any whitespace-separated language, but uses a language-specific abbreviation lexicon, which can be set via a respective parameter. Default is English.</description>
+<version>2.0</version>
+<vendor>InfexBA</vendor>
+<configurationParameters>
+<configurationParameter>
+<name>URLPrefixLexicon</name>
+<description>The file path of the URL prefix lexicon.</description>
+<type>String</type>
+<multiValued>false</multiValued>
+<mandatory>true</mandatory>
+</configurationParameter>
+<configurationParameter>
+<name>AbbreviationLexicon</name>
+<description>The file path of the abbreviation lexicon.</description>
+<type>String</type>
+<multiValued>false</multiValued>
+<mandatory>true</mandatory>
+</configurationParameter>
+<configurationParameter>
+<name>URLSuffixLexicon</name>
+<description>The file path of the URL suffix lexicon.</description>
+<type>String</type>
+<multiValued>false</multiValued>
+<mandatory>true</mandatory>
+</configurationParameter>
+<configurationParameter>
+        <name>SplitAfterAllLineBreaks</name>
+        <description>Indicates whether to split after all line breaks (true) or only those that fulfill some additional properties (false).</description>
+        <type>Boolean</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+<configurationParameterSettings>
+<nameValuePair>
+<name>URLPrefixLexicon</name>
+<value>
+<string>lexicons/infexba/all_InfexBA_urlbegins.txt</string>
+</value>
+</nameValuePair>
+<nameValuePair>
+<name>AbbreviationLexicon</name>
+<value>
+<string>lexicons/infexba/en_TreeTagger_abbreviations.txt</string>
+</value>
+</nameValuePair>
+<nameValuePair>
+<name>URLSuffixLexicon</name>
+<value>
+<string>lexicons/infexba/all_InfexBA_topleveldomains.txt</string>
+</value>
+</nameValuePair>
+<nameValuePair>
+        <name>SplitAfterAllLineBreaks</name>
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+<typeSystemDescription>
+<imports>
+<import location="../../typesystems/CoreTypeSystem.xml"/>
+</imports>
+</typeSystemDescription>
+<typePriorities/>
+<fsIndexCollection/>
+<capabilities>
+<capability>
+<inputs/>
+<outputs>
+<type>de.aitools.ie.uima.type.core.Sentence</type>
+<feature>de.aitools.ie.uima.type.core.Sentence:end</feature>
+<feature>de.aitools.ie.uima.type.core.Sentence:begin</feature>
+<feature>de.aitools.ie.uima.type.core.Sentence:sofa</feature>
+</outputs>
+<languagesSupported/>
+</capability>
+</capabilities>
+<operationalProperties>
+<modifiesCas>true</modifiesCas>
+<multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+<outputsNewCASes>false</outputsNewCASes>
+</operationalProperties>
+</analysisEngineMetaData>
+<resourceManagerConfiguration/>
+</analysisEngineDescription>

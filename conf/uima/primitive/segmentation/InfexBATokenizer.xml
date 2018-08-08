@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+<frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+<primitive>true</primitive>
+<annotatorImplementationName>de.aitools.ie.uima.analysis.segmentation.InfexBATokenizer</annotatorImplementationName>
+<analysisEngineMetaData>
+<name>InfexBATokenizer</name>
+<description>Rather effective but still efficient rule-based tokenizer that was developed in the InfexBA project and improved in the ArguAna project later on.
+
+Requires sentence annotations and produces token annotations.
+
+Targets at news articles primarily, but should also work well with less well-formatted texts likes reviews.</description>
+<version>2.0</version>
+<vendor>InfexBA</vendor>
+<configurationParameters>
+<configurationParameter>
+<name>URLPrefixLexicon</name>
+<description>The file path of the URL prefix lexicon.</description>
+<type>String</type>
+<multiValued>false</multiValued>
+<mandatory>true</mandatory>
+</configurationParameter>
+<configurationParameter>
+<name>AbbreviationLexicon</name>
+<description>The file path of the abbreviation lexicon.</description>
+<type>String</type>
+<multiValued>false</multiValued>
+<mandatory>true</mandatory>
+</configurationParameter>
+</configurationParameters>
+<configurationParameterSettings>
+<nameValuePair>
+<name>URLPrefixLexicon</name>
+<value>
+<string>lexicons/infexba/all_InfexBA_urlbegins.txt</string>
+</value>
+</nameValuePair>
+<nameValuePair>
+<name>AbbreviationLexicon</name>
+<value>
+<string>lexicons/infexba/en_TreeTagger_abbreviations.txt</string>
+</value>
+</nameValuePair>
+</configurationParameterSettings>
+<typeSystemDescription>
+<imports>
+<import location="../../typesystems/CoreTypeSystem.xml"/>
+</imports>
+</typeSystemDescription>
+<typePriorities>
+<priorityList>
+<type>uima.tcas.Annotation</type>
+<type>de.aitools.ie.uima.type.core.Sentence</type>
+</priorityList>
+</typePriorities>
+<fsIndexCollection/>
+<capabilities>
+<capability>
+<inputs>
+<type>de.aitools.ie.uima.type.core.Sentence</type>
+<feature>de.aitools.ie.uima.type.core.Sentence:end</feature>
+<feature>de.aitools.ie.uima.type.core.Sentence:begin</feature>
+<feature>de.aitools.ie.uima.type.core.Sentence:sofa</feature>
+</inputs>
+<outputs>
+<type>de.aitools.ie.uima.type.core.Token</type>
+<feature>de.aitools.ie.uima.type.core.Token:end</feature>
+<feature>de.aitools.ie.uima.type.core.Token:begin</feature>
+<feature>de.aitools.ie.uima.type.core.Token:sofa</feature>
+</outputs>
+<languagesSupported/>
+</capability>
+</capabilities>
+<operationalProperties>
+<modifiesCas>true</modifiesCas>
+<multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+<outputsNewCASes>false</outputsNewCASes>
+</operationalProperties>
+</analysisEngineMetaData>
+<resourceManagerConfiguration/>
+</analysisEngineDescription>
