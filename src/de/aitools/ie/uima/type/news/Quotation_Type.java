@@ -1,23 +1,24 @@
 
-/* First created by JCasGen Wed Aug 08 23:11:28 CEST 2018 */
-package de.aitools.ie.uima.type.supertype;
+/* First created by JCasGen Sun Aug 12 22:50:02 CEST 2018 */
+package de.aitools.ie.uima.type.news;
 
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.cas.impl.TypeImpl;
 import org.apache.uima.cas.Type;
+import de.aitools.ie.uima.type.supertype.Unit_Type;
 
-/** The supertype of all classification categories of a text, i.e., categories that specify some classifiable property of the text.
+/** A piece of text that is quoted from somewhere else
  * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
  * @generated */
-public class Classification_Type extends Category_Type {
+public class Quotation_Type extends Unit_Type {
   /** @generated */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = Classification.typeIndexID;
+  public final static int typeIndexID = Quotation.typeIndexID;
   /** @generated 
      @modifiable */
   @SuppressWarnings ("hiding")
-  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("de.aitools.ie.uima.type.supertype.Classification");
+  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("de.aitools.ie.uima.type.news.Quotation");
 
 
 
@@ -26,7 +27,7 @@ public class Classification_Type extends Category_Type {
 	 * @param jcas JCas
 	 * @param casType Type 
 	 */
-  public Classification_Type(JCas jcas, Type casType) {
+  public Quotation_Type(JCas jcas, Type casType) {
     super(jcas, casType);
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
 

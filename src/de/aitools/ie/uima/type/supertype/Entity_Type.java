@@ -9,7 +9,7 @@ import org.apache.uima.cas.Type;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** The supertype of all entity types.
- * Updated by JCasGen Wed Aug 08 23:11:28 CEST 2018
+ * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
  * @generated */
 public class Entity_Type extends Annotation_Type {
   /** @generated */

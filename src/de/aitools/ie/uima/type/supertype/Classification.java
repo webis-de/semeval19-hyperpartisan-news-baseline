@@ -10,8 +10,8 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** The supertype of all classification categories of a text, i.e., categories that specify some classifiable property of the text.
- * Updated by JCasGen Wed Aug 08 23:11:28 CEST 2018
- * XML source: /home/dogu3912/eclipse-workspace/code/semeval19-hyperpartisan-news-baseline/conf/uima/typesystems/CoreTypeSystem.xml
+ * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
+ * XML source: /home/dogu3912/eclipse-workspace/code/semeval19-hyperpartisan-news-baseline/conf/uima/typesystems/NewsArticleTypeSystem.xml
  * @generated */
 public class Classification extends Category {
   /** @generated

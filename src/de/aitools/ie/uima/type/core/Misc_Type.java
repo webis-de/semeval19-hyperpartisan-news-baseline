@@ -9,7 +9,7 @@ import org.apache.uima.cas.Type;
 import de.aitools.ie.uima.type.supertype.NamedEntity_Type;
 
 /** A misc entity (as proposed in the CoNLL-2003 shared task.
- * Updated by JCasGen Wed Aug 08 23:11:28 CEST 2018
+ * Updated by JCasGen Sun Aug 12 22:51:22 CEST 2018
  * @generated */
 public class Misc_Type extends NamedEntity_Type {
   /** @generated */

@@ -1,25 +1,25 @@
 
 
-/* First created by JCasGen Wed Aug 08 23:11:28 CEST 2018 */
-package de.aitools.ie.uima.type.supertype;
+/* First created by JCasGen Sun Aug 12 22:50:02 CEST 2018 */
+package de.aitools.ie.uima.type.news;
 
 import org.apache.uima.jcas.JCas; 
 import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.jcas.cas.TOP_Type;
 
-import org.apache.uima.jcas.tcas.Annotation;
+import de.aitools.ie.uima.type.supertype.Unit;
 
 
-/** The supertype of all annotation types that refer to units of a text.
+/** A piece of text that is quoted from somewhere else
  * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
  * XML source: /home/dogu3912/eclipse-workspace/code/semeval19-hyperpartisan-news-baseline/conf/uima/typesystems/NewsArticleTypeSystem.xml
  * @generated */
-public class Unit extends Annotation {
+public class Quotation extends Unit {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(Unit.class);
+  public final static int typeIndexID = JCasRegistry.register(Quotation.class);
   /** @generated
    * @ordered 
    */
@@ -33,14 +33,14 @@ public class Unit extends Annotation {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected Unit() {/* intentionally empty block */}
+  protected Quotation() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated
    * @param addr low level Feature Structure reference
    * @param type the type of this Feature Structure 
    */
-  public Unit(int addr, TOP_Type type) {
+  public Quotation(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
@@ -48,7 +48,7 @@ public class Unit extends Annotation {
   /** @generated
    * @param jcas JCas to which this Feature Structure belongs 
    */
-  public Unit(JCas jcas) {
+  public Quotation(JCas jcas) {
     super(jcas);
     readObject();   
   } 
@@ -58,7 +58,7 @@ public class Unit extends Annotation {
    * @param begin offset to the begin spot in the SofA
    * @param end offset to the end spot in the SofA 
   */  
-  public Unit(JCas jcas, int begin, int end) {
+  public Quotation(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);

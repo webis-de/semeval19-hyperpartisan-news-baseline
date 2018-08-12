@@ -8,7 +8,7 @@ import org.apache.uima.cas.impl.TypeImpl;
 import org.apache.uima.cas.Type;
 
 /** The supertype of all named entity types.
- * Updated by JCasGen Wed Aug 08 23:11:28 CEST 2018
+ * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
  * @generated */
 public class NamedEntity_Type extends Entity_Type {
   /** @generated */

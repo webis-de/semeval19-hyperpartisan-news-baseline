@@ -9,7 +9,7 @@ import org.apache.uima.cas.Type;
 import de.aitools.ie.uima.type.supertype.Metadata_Type;
 
 /** The language of a text.
- * Updated by JCasGen Wed Aug 08 23:11:28 CEST 2018
+ * Updated by JCasGen Sun Aug 12 22:51:22 CEST 2018
  * @generated */
 public class Language_Type extends Metadata_Type {
   /** @generated */

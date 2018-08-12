@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** The supertype of all annotation types that refer to categories of a text.
- * Updated by JCasGen Wed Aug 08 23:11:28 CEST 2018
- * XML source: /home/dogu3912/eclipse-workspace/code/semeval19-hyperpartisan-news-baseline/conf/uima/typesystems/CoreTypeSystem.xml
+ * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
+ * XML source: /home/dogu3912/eclipse-workspace/code/semeval19-hyperpartisan-news-baseline/conf/uima/typesystems/NewsArticleTypeSystem.xml
  * @generated */
 public class Category extends Annotation {
   /** @generated

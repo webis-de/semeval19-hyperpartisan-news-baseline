@@ -11,7 +11,7 @@ import org.apache.uima.cas.Feature;
 import de.aitools.ie.uima.type.supertype.Classification_Type;
 
 /** The classification of the readability of a text. Different readability scores can be set as features of a respective annotation.
- * Updated by JCasGen Wed Aug 08 23:11:28 CEST 2018
+ * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
  * @generated */
 public class Readability_Type extends Classification_Type {
   /** @generated */

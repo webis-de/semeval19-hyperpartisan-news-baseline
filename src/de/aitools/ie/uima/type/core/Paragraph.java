@@ -11,8 +11,8 @@ import de.aitools.ie.uima.type.supertype.GrammaticalUnit;
 
 
 /** A paragraph.
- * Updated by JCasGen Wed Aug 08 23:11:28 CEST 2018
- * XML source: /home/dogu3912/eclipse-workspace/code/semeval19-hyperpartisan-news-baseline/conf/uima/typesystems/CoreTypeSystem.xml
+ * Updated by JCasGen Sun Aug 12 22:51:22 CEST 2018
+ * XML source: /home/dogu3912/eclipse-workspace/code/semeval19-hyperpartisan-news-baseline/conf/uima/typesystems/NewsArticleTypeSystem.xml
  * @generated */
 public class Paragraph extends GrammaticalUnit {
   /** @generated

@@ -13,7 +13,7 @@ import org.apache.uima.jcas.tcas.Annotation_Type;
 /** Stores detailed information about the original source document from which the current CAS was initialized. All information (like size) refers to the source document and not to the document in the CAS which may be converted and filtered by a CAS Initializer. For example this information will be written to the Semantic Search index so that the original document contents can be retrieved by queries.
 
 (NOTICE: This annotation type is copied from the Apache UIMA examples. Only the name space has been changed.)
- * Updated by JCasGen Wed Aug 08 23:11:28 CEST 2018
+ * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
  * @generated */
 public class SourceDocumentInformation_Type extends Annotation_Type {
   /** @generated */
