@@ -52,24 +52,20 @@ public class ZipIterator implements Iterator<InputStream>, AutoCloseable {
   }
   
   protected void advance() {
-    try {
-      if (!this.internIterator.hasMoreElements()) { // end of zip file
-        this.close();
-        return;
-      }
-      
-      this.next = this.internIterator.nextElement();
-      boolean nextMatches = this.nextMatchesPattern();
-      
-      while (!nextMatches && this.internIterator.hasMoreElements()) {
-        this.next = this.internIterator.nextElement();
-        nextMatches = this.nextMatchesPattern();
-      }
-  
-      if (!nextMatches) { this.close(); } // end of zip file
-    } catch (final IOException e) {
-      throw new UncheckedIOException(e);
+    if (!this.internIterator.hasMoreElements()) { // end of zip file
+      this.next = null;
+      return;
     }
+    
+    this.next = this.internIterator.nextElement();
+    boolean nextMatches = this.nextMatchesPattern();
+    
+    while (!nextMatches && this.internIterator.hasMoreElements()) {
+      this.next = this.internIterator.nextElement();
+      nextMatches = this.nextMatchesPattern();
+    }
+
+    if (!nextMatches) { this.next = null; } // end of zip file
   }
   
   protected boolean nextMatchesPattern() {

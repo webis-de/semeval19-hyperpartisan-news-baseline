@@ -10,8 +10,8 @@ import org.apache.uima.cas.CASException;
 import org.apache.uima.collection.CollectionException;
 import org.apache.uima.collection.CollectionReader_ImplBase;
 import org.apache.uima.jcas.JCas;
-import org.apache.uima.resource.ResourceConfigurationException;
 import org.apache.uima.resource.ResourceInitializationException;
+import org.apache.uima.util.InvalidXMLException;
 import org.apache.uima.util.Progress;
 import org.apache.uima.util.ProgressImpl;
 import org.w3c.dom.Element;
@@ -24,9 +24,24 @@ import de.aitools.ie.uima.type.news.ArticleMetadata;
 import de.aitools.ie.uima.type.news.Link;
 import de.aitools.ie.uima.type.news.Quotation;
 import de.aitools.ie.uima.type.supertype.Unit;
+import de.aitools.util.uima.CollectionIterator;
 import de.aitools.util.uima.Pipeline;
 
 public class ArticleReader extends CollectionReader_ImplBase {
+  
+  public static void main(final String[] args)
+  throws InvalidXMLException, ResourceInitializationException, IOException {
+    final CollectionIterator collection = new CollectionIterator(
+        TYPE_SYSTEM_NEWS_ARTICLES,
+        Pipeline.DESCRIPTOR_PACKAGE_FOR_COLLECTION_READERS + "ArticleReader.xml",
+        PARAM_INPUT, "/home/dogu3912/data/semeval19/test.zip");
+    collection.forEachRemaining(jcas -> {
+      System.out.println("NEXT");
+      jcas.getAnnotationIndex().forEach(annotation -> {
+        System.out.println(annotation);
+      });
+    });
+  }
   
   // -------------------------------------------------------------------------
   // CONSTANTS
@@ -94,10 +109,11 @@ public class ArticleReader extends CollectionReader_ImplBase {
   // -------------------------------------------------------------------------
   // FUNCTIONALITY
   // -------------------------------------------------------------------------
-  
+
   @Override
-  public void reconfigure() throws ResourceConfigurationException {
-    super.reconfigure();
+  public void initialize() throws ResourceInitializationException {
+    super.initialize();
+    this.read = 0;
     try {
       final String encoding = (String)
           this.getConfigParameterValue(PARAM_INPUT_ENCODING);
@@ -110,14 +126,8 @@ public class ArticleReader extends CollectionReader_ImplBase {
       this.articleIterator = new ArticleCollectionIterator(zipFile);
       this.read = 0;
     } catch (final IOException e) {
-      throw new ResourceConfigurationException(e);
+      throw new ResourceInitializationException(e);
     }
-  }
-  
-  @Override
-  public void initialize() throws ResourceInitializationException {
-    super.initialize();
-    this.read = 0;
   }
   
 
@@ -142,11 +152,13 @@ public class ArticleReader extends CollectionReader_ImplBase {
     metadata.setId(Integer.parseInt(
         articleElement.getAttribute(ATTRIBUTE_ARTICLE_ID)));
 
-    final Date publishedAt = new Date(jcas);
-    publishedAt.setNormalized(
-        articleElement.getAttribute(ATTRIBUTE_ARTICLE_PUBLISHED_AT));
-    publishedAt.addToIndexes();
-    metadata.setPublishedAt(publishedAt);
+    final String publishedAtValue =
+        articleElement.getAttribute(ATTRIBUTE_ARTICLE_PUBLISHED_AT);
+    if (!publishedAtValue.isEmpty()) {
+      final Date publishedAt = new Date(jcas);
+      publishedAt.setNormalized(publishedAtValue);
+      metadata.setPublishedAt(publishedAt);
+    }
 
     metadata.setTitle(articleElement.getAttribute(ATTRIBUTE_ARTICLE_TITLE));
 

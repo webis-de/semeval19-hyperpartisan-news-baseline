@@ -49,27 +49,27 @@ public class Pipeline {
    * descriptors.
    */
   public static final String DESCRIPTOR_PACKAGE_FOR_PRIMITIVE_ANALYSIS_ENGINES =
-      "uima.primitives.";
+      "uima/primitives/";
   
   /**
    * Directory in the class path that contains the aggregate analysis engine
    * descriptors.
    */
   public static final String DESCRIPTOR_PACKAGE_FOR_AGGREGATE_ANALYSIS_ENGINES =
-      "uima.aggregates.";
+      "uima/aggregates/";
   
   /**
    * Directory in the class path that contains the collection reader
    * descriptors.
    */
   public static final String DESCRIPTOR_PACKAGE_FOR_COLLECTION_READERS =
-      "uima.collectionreaders.";
+      "uima/collectionreaders/";
   
   /**
    * Directory in the class path that contains the type system descriptors.
    */
   public static final String DESCRIPTOR_PACKAGE_FOR_TYPE_SYSTEMS =
-      "uima.typesystems.";
+      "uima/typesystems/";
   
   // -------------------------------------------------------------------------
   // CONSTRUCTOR
@@ -128,7 +128,7 @@ public class Pipeline {
         + inputParameter + " = " + input);
 
     final XMLInputSource xmlInputSource =
-        new XMLInputSource(collectionReaderPath);
+        new XMLInputSource(ClassLoader.getSystemResource(collectionReaderPath));
     final ResourceSpecifier specifier =
         UIMAFramework.getXMLParser().parseResourceSpecifier(xmlInputSource);
 
@@ -158,7 +158,7 @@ public class Pipeline {
     LOG.info("Initializing AnalysisEngine " + analysisEnginePath);
 
     final XMLInputSource xmlInputSource =
-        new XMLInputSource(analysisEnginePath);
+        new XMLInputSource(ClassLoader.getSystemResource(analysisEnginePath));
     final ResourceSpecifier specifier =
         UIMAFramework.getXMLParser().parseResourceSpecifier(xmlInputSource);
     final AnalysisEngine analysisEngine =

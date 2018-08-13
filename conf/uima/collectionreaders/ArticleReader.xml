@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collectionReaderDescription xmlns="http://uima.apache.org/resourceSpecifier">
+<frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+<implementationName>de.aitools.ie.uima.reader.ArticleReader</implementationName>
+<processingResourceMetaData>
+<name>ArticleReader</name>
+<description>Collection reader for SemEval/PAN 2019 Hyperpartisan News Detection dataset files.</description>
+<version>1.0</version>
+<vendor>Webis</vendor>
+<configurationParameters>
+<configurationParameter>
+<name>input</name>
+<description>Input dataset ZIP file</description>
+<type>String</type>
+<multiValued>false</multiValued>
+<mandatory>true</mandatory>
+</configurationParameter>
+<configurationParameter>
+<name>encoding</name>
+<description>Character encoding for the documents.  If not specified,
+                   the default system encoding will be used.  Note that this parameter
+                   only applies if there is no CAS Initializer provided; otherwise,
+                   it is the CAS Initializer's responsibility to deal with character
+                   encoding issues.</description>
+<type>String</type>
+<multiValued>false</multiValued>
+<mandatory>false</mandatory>
+</configurationParameter>
+</configurationParameters>
+<configurationParameterSettings>
+<nameValuePair>
+<name>encoding</name>
+<value>
+<string>utf-8</string>
+</value>
+</nameValuePair>
+</configurationParameterSettings>
+<typeSystemDescription>
+<imports>
+<import name="org.apache.uima.examples.SourceDocumentInformation"/>
+</imports>
+</typeSystemDescription>
+<typePriorities/>
+<fsIndexCollection/>
+<capabilities>
+<capability>
+<inputs/>
+<outputs>
+<type allAnnotatorFeatures="true">org.apache.uima.examples.SourceDocumentInformation</type>
+</outputs>
+<languagesSupported/>
+</capability>
+</capabilities>
+<operationalProperties>
+<modifiesCas>true</modifiesCas>
+<multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+<outputsNewCASes>true</outputsNewCASes>
+</operationalProperties>
+</processingResourceMetaData>
+<resourceManagerConfiguration/>
+</collectionReaderDescription>
