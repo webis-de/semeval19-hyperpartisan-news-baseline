@@ -48,7 +48,7 @@ TAGS FOR INTERNAL USE
     </configurationParameterSettings>
     <typeSystemDescription>
       <imports>
-        <import location="../../type-systems/CoreTypeSystem.xml"/>
+        <import location="../../typesystems/CoreTypeSystem.xml"/>
       </imports>
     </typeSystemDescription>
     <typePriorities>

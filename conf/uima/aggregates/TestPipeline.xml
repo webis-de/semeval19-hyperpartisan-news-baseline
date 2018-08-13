@@ -4,13 +4,13 @@
   <primitive>false</primitive>  
   <delegateAnalysisEngineSpecifiers>
     <delegateAnalysisEngine key="InfexBASentenceSplitter">
-      <import location="../primitive-AEs/segmentation/InfexBASentenceSplitter.xml"/>
+      <import location="../primitives/segmentation/InfexBASentenceSplitter.xml"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="InfexBATokenizer">
-      <import location="../primitive-AEs/segmentation/InfexBATokenizer.xml"/>
+      <import location="../primitives/segmentation/InfexBATokenizer.xml"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="MateLemmatizer">
-      <import location="../primitive-AEs/tagging/MateLemmatizer.xml"/>
+      <import location="../primitives/tagging/MateLemmatizer.xml"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
