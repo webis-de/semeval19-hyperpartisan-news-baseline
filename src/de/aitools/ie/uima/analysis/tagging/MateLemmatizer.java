@@ -126,10 +126,11 @@ public class MateLemmatizer extends JCasAnnotator_ImplBase{
 		sentenceData.init(tokenStrings.toArray(new String[0]));
 		// Lemmatize and relate lemmas to tokens
 		lemmatizer.apply(sentenceData);
-		for(int i=1; i<sentenceData.lemmas.length; i++){
-			tokens.get(i-1).setLemma(sentenceData.lemmas[i]);
-//			System.out.println(sentenceData.lemmas[i]);
-		}	
+		if (sentenceData.lemmas != null) {
+  		for(int i=1; i<sentenceData.lemmas.length; i++){
+  			tokens.get(i-1).setLemma(sentenceData.lemmas[i]);
+  		}	
+		}
 	}
 	
 	/**

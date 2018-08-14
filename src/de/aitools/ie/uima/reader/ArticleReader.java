@@ -11,7 +11,6 @@ import org.apache.uima.collection.CollectionException;
 import org.apache.uima.collection.CollectionReader_ImplBase;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
-import org.apache.uima.util.InvalidXMLException;
 import org.apache.uima.util.Progress;
 import org.apache.uima.util.ProgressImpl;
 import org.w3c.dom.Element;
@@ -24,24 +23,9 @@ import de.aitools.ie.uima.type.news.ArticleMetadata;
 import de.aitools.ie.uima.type.news.Link;
 import de.aitools.ie.uima.type.news.Quotation;
 import de.aitools.ie.uima.type.supertype.Unit;
-import de.aitools.util.uima.CollectionIterator;
 import de.aitools.util.uima.Pipeline;
 
 public class ArticleReader extends CollectionReader_ImplBase {
-  
-  public static void main(final String[] args)
-  throws InvalidXMLException, ResourceInitializationException, IOException {
-    final CollectionIterator collection = new CollectionIterator(
-        TYPE_SYSTEM_NEWS_ARTICLES,
-        Pipeline.DESCRIPTOR_PACKAGE_FOR_COLLECTION_READERS + "ArticleReader.xml",
-        PARAM_INPUT, "/home/dogu3912/data/semeval19/test.zip");
-    collection.forEachRemaining(jcas -> {
-      System.out.println("NEXT");
-      jcas.getAnnotationIndex().forEach(annotation -> {
-        System.out.println(annotation);
-      });
-    });
-  }
   
   // -------------------------------------------------------------------------
   // CONSTANTS

@@ -118,12 +118,15 @@ public class MatePartOfSpeechTagger extends JCasAnnotator_ImplBase{
 		// Get tokens and convert to mate-tools structure
 		List<Token> tokens = this.statementToTokens(jcas, sentence);
 		List<String> tokenStrings = this.tokensToStrings(tokens);
-		SentenceData09 sentenceData = new SentenceData09();
-		sentenceData.init(tokenStrings.toArray(new String[0]));
-		// Tag and relate POS tags to tokens
-		posTagger.tag(sentenceData);
-		for(int i=0; i<sentenceData.ppos.length; i++)
-			tokens.get(i).setPos(sentenceData.ppos[i]);
+		if (!tokenStrings.isEmpty()) {
+    	SentenceData09 sentenceData = new SentenceData09();
+    	sentenceData.init(tokenStrings.toArray(new String[0]));
+    	// Tag and relate POS tags to tokens
+    	posTagger.tag(sentenceData);
+    	for(int i=0; i<sentenceData.ppos.length; i++) {
+    		tokens.get(i).setPos(sentenceData.ppos[i]);
+    	}
+		}
 	}
 	
 	/**

@@ -9,19 +9,9 @@
 
 Requires token annotations with lemmas and sentence annotations and produces the part-of-speech features of the token annotations.
 
-Targets at well-formatted texts, but should also work with other texts. 
+Targets at well-formatted texts, but should also work with other texts.
 
-Models exist for different languages including English and German. Some models might need to be obtained from the Mate Tools website first.
-
-The model can be set via a respective parameter in this descriptor. Be sure that the path matches your file structure.
-
-For more details, see http://code.google.com/p/mate-tools/.
-
-
-TAGS FOR INTERNAL USE
-
-@AverageSentenceResponseTime 10.75
-@Accuracy 0.98</description>
+For more details, see http://code.google.com/p/mate-tools/.</description>
     <version>1.0</version>
     <vendor>InfexBA</vendor>
     <configurationParameters searchStrategy="language_fallback">
@@ -38,10 +28,8 @@ TAGS FOR INTERNAL USE
         <name>MateToolsPOSTaggerModel</name>
         <value>
           <array>
-            <string>../../software_code-in-progress_thirdparty/thirdparty-mate-3.0/tag-eng.model</string>
-            <string>../software_code-in-progress_thirdparty/thirdparty-mate-3.0/tag-eng.model</string>
-            <string>../../thirdparty/thirdparty-mate-3.0/tag-eng.model</string>
-            <string>../thirdparty/thirdparty-mate-3.0/tag-eng.model</string>
+            <string>models/CoNLL2009-ST-English-ALL.anna-3.3.postagger.model</string>
+            <string>data/models/CoNLL2009-ST-English-ALL.anna-3.3.postagger.model</string>
           </array>
         </value>
       </nameValuePair>
