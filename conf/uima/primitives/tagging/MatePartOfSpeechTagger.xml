@@ -16,7 +16,7 @@ For more details, see http://code.google.com/p/mate-tools/.</description>
     <vendor>InfexBA</vendor>
     <configurationParameters searchStrategy="language_fallback">
       <configurationParameter>
-        <name>MateToolsPOSTaggerModel</name>
+        <name>model</name>
         <description>The location of the model of the part-of-speech tagger.</description>
         <type>String</type>
         <multiValued>true</multiValued>
@@ -25,7 +25,7 @@ For more details, see http://code.google.com/p/mate-tools/.</description>
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
-        <name>MateToolsPOSTaggerModel</name>
+        <name>model</name>
         <value>
           <array>
             <string>models/CoNLL2009-ST-English-ALL.anna-3.3.postagger.model</string>

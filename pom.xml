@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.webis</groupId>
   <artifactId>semeval19-hyperpartisan-news-baseline</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -13,6 +13,30 @@
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
+      </plugin>
+      <plugin>
+      	<groupId>org.apache.maven.plugins</groupId>
+      	<artifactId>maven-assembly-plugin</artifactId>
+      	<executions>
+	        <execution>
+	          <phase>package</phase>
+	          <goals>
+	            <goal>single</goal>
+	          </goals>
+	          <configuration>
+	            <archive>
+	              <manifest>
+	                <mainClass>
+	                  de.aitools.ie.uima.Analyze
+	                </mainClass>
+	              </manifest>
+	            </archive>
+	            <descriptorRefs>
+	              <descriptorRef>jar-with-dependencies</descriptorRef>
+	            </descriptorRefs>
+	          </configuration>
+	        </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -28,4 +52,5 @@
   		<version>3.5</version>
   	</dependency>
   </dependencies>
+  <packaging>jar</packaging>
 </project>

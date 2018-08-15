@@ -4,12 +4,11 @@ import is2.data.SentenceData09;
 import is2.tag.Options;
 import is2.tag.Tagger;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.uima.UimaContext;
-import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
@@ -20,7 +19,7 @@ import de.aitools.ie.uima.type.core.Token;
 
 /**
  * Wrapper of the very effective Mate Tools Part-of-Speech Tagger that 
- * classifies part-of-speech tags based on a large margin model (Bj�rkelund 
+ * classifies part-of-speech tags based on a large margin model (Björkelund 
  * et. al., COLING 2010).  
  * 
  * Requires token annotations with lemmas and sentence annotations and produces 
@@ -33,18 +32,7 @@ import de.aitools.ie.uima.type.core.Token;
  * @author henning.wachsmuth
  *
  */
-public class MatePartOfSpeechTagger extends JCasAnnotator_ImplBase{
-	
-	// -------------------------------------------------------------------------
-	// UIMA PARAMETERS
-	// -------------------------------------------------------------------------
-
-	/**
-	 * Config parameter for the model used by the POS tagger 
-	 */
-	public static final String PARAM_MODEL = "MateToolsPOSTaggerModel";
-	
-	
+public class MatePartOfSpeechTagger extends AbstractMateTagger {
 	
 	// -------------------------------------------------------------------------
 	// OBJECTS
@@ -56,43 +44,18 @@ public class MatePartOfSpeechTagger extends JCasAnnotator_ImplBase{
 	 */
 	private Tagger posTagger = null;
 	
-	/**
-	 * The path of the machine learning model of the part-of-speech tagger.
-	 */
-	private String modelPath = null;
-	
-	/**
-	 * Options for the POS tagger
-	 */
-	private Options optsTagger;
-
-	
-	
 	// -------------------------------------------------------------------------
 	// INITIALIZATION
 	// -------------------------------------------------------------------------
-
-	@Override
-	public void initialize(UimaContext aContext) 
-	throws ResourceInitializationException {
-		super.initialize(aContext);
-		// Load model from first existing config path
-		String [] newModelPaths = (String []) 
-				aContext.getConfigParameterValue(PARAM_MODEL);
-		for (String newModelPath : newModelPaths) {
-			if (new File(newModelPath).exists()){
-				// Load model only if not loaded before
-				if (!newModelPath.equals(modelPath)){
-					modelPath = newModelPath;
-					optsTagger = new Options(new String[]{"-model", modelPath});
-					posTagger = new Tagger(optsTagger);
-				}
-				break;
-			}
-		}
-	}
-
 	
+	@Override
+	protected void initialize(
+	    final String modelPath, final UimaContext context)
+	throws IOException, ResourceInitializationException {
+    final Options taggerOptions =
+        new Options(new String[]{ "-model", modelPath });
+    posTagger = new Tagger(taggerOptions);
+	}
 	
 	// -------------------------------------------------------------------------
 	// PROCESSING
