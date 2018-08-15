@@ -11,7 +11,7 @@ import org.apache.uima.cas.Feature;
 import de.aitools.ie.uima.type.supertype.Metadata_Type;
 
 /** Metadata for a news article
- * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
+ * Updated by JCasGen Wed Aug 15 23:47:38 CEST 2018
  * @generated */
 public class ArticleMetadata_Type extends Metadata_Type {
   /** @generated */
@@ -54,19 +54,19 @@ public class ArticleMetadata_Type extends Metadata_Type {
    * @param addr low level Feature Structure reference
    * @return the feature value 
    */ 
-  public int getPublishedAt(int addr) {
+  public String getPublishedAt(int addr) {
         if (featOkTst && casFeat_publishedAt == null)
       jcas.throwFeatMissing("publishedAt", "de.aitools.ie.uima.type.news.ArticleMetadata");
-    return ll_cas.ll_getRefValue(addr, casFeatCode_publishedAt);
+    return ll_cas.ll_getStringValue(addr, casFeatCode_publishedAt);
   }
   /** @generated
    * @param addr low level Feature Structure reference
    * @param v value to set 
    */    
-  public void setPublishedAt(int addr, int v) {
+  public void setPublishedAt(int addr, String v) {
         if (featOkTst && casFeat_publishedAt == null)
       jcas.throwFeatMissing("publishedAt", "de.aitools.ie.uima.type.news.ArticleMetadata");
-    ll_cas.ll_setRefValue(addr, casFeatCode_publishedAt, v);}
+    ll_cas.ll_setStringValue(addr, casFeatCode_publishedAt, v);}
     
   
  
@@ -110,7 +110,7 @@ public class ArticleMetadata_Type extends Metadata_Type {
     casFeatCode_id  = (null == casFeat_id) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_id).getCode();
 
  
-    casFeat_publishedAt = jcas.getRequiredFeatureDE(casType, "publishedAt", "de.aitools.ie.uima.type.core.Date", featOkTst);
+    casFeat_publishedAt = jcas.getRequiredFeatureDE(casType, "publishedAt", "uima.cas.String", featOkTst);
     casFeatCode_publishedAt  = (null == casFeat_publishedAt) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_publishedAt).getCode();
 
  

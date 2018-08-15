@@ -9,7 +9,7 @@ import org.apache.uima.cas.Type;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** The supertype of all annotation types that refer to units of a text.
- * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
+ * Updated by JCasGen Wed Aug 15 23:47:38 CEST 2018
  * @generated */
 public class Unit_Type extends Annotation_Type {
   /** @generated */

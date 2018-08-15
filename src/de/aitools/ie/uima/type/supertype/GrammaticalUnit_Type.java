@@ -8,7 +8,7 @@ import org.apache.uima.cas.impl.TypeImpl;
 import org.apache.uima.cas.Type;
 
 /** The supertype of all grammatical units of a text.
- * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
+ * Updated by JCasGen Wed Aug 15 23:47:38 CEST 2018
  * @generated */
 public class GrammaticalUnit_Type extends Unit_Type {
   /** @generated */

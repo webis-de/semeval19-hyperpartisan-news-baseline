@@ -11,7 +11,7 @@ import org.apache.uima.cas.Feature;
 import de.aitools.ie.uima.type.supertype.NumericExpression_Type;
 
 /** A date.
- * Updated by JCasGen Sun Aug 12 22:51:22 CEST 2018
+ * Updated by JCasGen Wed Aug 15 23:47:38 CEST 2018
  * @generated */
 public class Date_Type extends NumericExpression_Type {
   /** @generated */

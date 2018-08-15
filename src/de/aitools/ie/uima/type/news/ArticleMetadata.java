@@ -8,11 +8,10 @@ import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.jcas.cas.TOP_Type;
 
 import de.aitools.ie.uima.type.supertype.Metadata;
-import de.aitools.ie.uima.type.core.Date;
 
 
 /** Metadata for a news article
- * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
+ * Updated by JCasGen Wed Aug 15 23:47:38 CEST 2018
  * XML source: /home/dogu3912/eclipse-workspace/code/semeval19-hyperpartisan-news-baseline/conf/uima/typesystems/NewsArticleTypeSystem.xml
  * @generated */
 public class ArticleMetadata extends Metadata {
@@ -106,19 +105,19 @@ public class ArticleMetadata extends Metadata {
    * @generated
    * @return value of the feature 
    */
-  public Date getPublishedAt() {
+  public String getPublishedAt() {
     if (ArticleMetadata_Type.featOkTst && ((ArticleMetadata_Type)jcasType).casFeat_publishedAt == null)
       jcasType.jcas.throwFeatMissing("publishedAt", "de.aitools.ie.uima.type.news.ArticleMetadata");
-    return (Date)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((ArticleMetadata_Type)jcasType).casFeatCode_publishedAt)));}
+    return jcasType.ll_cas.ll_getStringValue(addr, ((ArticleMetadata_Type)jcasType).casFeatCode_publishedAt);}
     
   /** setter for publishedAt - sets The date at which the article was published 
    * @generated
    * @param v value to set into the feature 
    */
-  public void setPublishedAt(Date v) {
+  public void setPublishedAt(String v) {
     if (ArticleMetadata_Type.featOkTst && ((ArticleMetadata_Type)jcasType).casFeat_publishedAt == null)
       jcasType.jcas.throwFeatMissing("publishedAt", "de.aitools.ie.uima.type.news.ArticleMetadata");
-    jcasType.ll_cas.ll_setRefValue(addr, ((ArticleMetadata_Type)jcasType).casFeatCode_publishedAt, jcasType.ll_cas.ll_getFSRef(v));}    
+    jcasType.ll_cas.ll_setStringValue(addr, ((ArticleMetadata_Type)jcasType).casFeatCode_publishedAt, v);}    
    
     
   //*--------------*

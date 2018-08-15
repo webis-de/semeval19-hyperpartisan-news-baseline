@@ -11,7 +11,7 @@ import de.aitools.ie.uima.type.supertype.NamedEntity;
 
 
 /** A person name.
- * Updated by JCasGen Sun Aug 12 22:51:22 CEST 2018
+ * Updated by JCasGen Wed Aug 15 23:47:38 CEST 2018
  * XML source: /home/dogu3912/eclipse-workspace/code/semeval19-hyperpartisan-news-baseline/conf/uima/typesystems/NewsArticleTypeSystem.xml
  * @generated */
 public class Person extends NamedEntity {

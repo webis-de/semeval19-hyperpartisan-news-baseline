@@ -9,7 +9,7 @@ import org.apache.uima.cas.Type;
 import de.aitools.ie.uima.type.supertype.GrammaticalUnit_Type;
 
 /** A paragraph.
- * Updated by JCasGen Sun Aug 12 22:51:22 CEST 2018
+ * Updated by JCasGen Wed Aug 15 23:47:38 CEST 2018
  * @generated */
 public class Paragraph_Type extends GrammaticalUnit_Type {
   /** @generated */

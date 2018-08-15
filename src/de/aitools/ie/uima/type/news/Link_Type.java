@@ -11,7 +11,7 @@ import org.apache.uima.cas.Feature;
 import de.aitools.ie.uima.type.supertype.Unit_Type;
 
 /** A link to another web page
- * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
+ * Updated by JCasGen Wed Aug 15 23:47:38 CEST 2018
  * @generated */
 public class Link_Type extends Unit_Type {
   /** @generated */

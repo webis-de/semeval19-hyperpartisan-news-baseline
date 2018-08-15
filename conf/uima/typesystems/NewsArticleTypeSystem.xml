@@ -21,7 +21,7 @@
         <featureDescription>
           <name>publishedAt</name>
           <description>The date at which the article was published</description>
-          <rangeTypeName>de.aitools.ie.uima.type.core.Date</rangeTypeName>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>title</name>

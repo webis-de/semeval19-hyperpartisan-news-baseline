@@ -9,7 +9,7 @@ import org.apache.uima.cas.Type;
 import de.aitools.ie.uima.type.supertype.GrammaticalUnit_Type;
 
 /** A sentence.
- * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
+ * Updated by JCasGen Wed Aug 15 23:47:38 CEST 2018
  * @generated */
 public class Sentence_Type extends GrammaticalUnit_Type {
   /** @generated */

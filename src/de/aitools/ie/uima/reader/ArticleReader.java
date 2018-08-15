@@ -17,7 +17,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import de.aitools.ie.uima.type.core.Date;
 import de.aitools.ie.uima.type.core.Paragraph;
 import de.aitools.ie.uima.type.news.ArticleMetadata;
 import de.aitools.ie.uima.type.news.Link;
@@ -136,11 +135,9 @@ public class ArticleReader extends CollectionReader_ImplBase {
     metadata.setId(Integer.parseInt(
         articleElement.getAttribute(ATTRIBUTE_ARTICLE_ID)));
 
-    final String publishedAtValue =
+    final String publishedAt =
         articleElement.getAttribute(ATTRIBUTE_ARTICLE_PUBLISHED_AT);
-    if (!publishedAtValue.isEmpty()) {
-      final Date publishedAt = new Date(jcas);
-      publishedAt.setNormalized(publishedAtValue);
+    if (!publishedAt.isEmpty()) {
       metadata.setPublishedAt(publishedAt);
     }
 

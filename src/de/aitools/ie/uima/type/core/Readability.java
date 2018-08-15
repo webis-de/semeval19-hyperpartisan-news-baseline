@@ -11,7 +11,7 @@ import de.aitools.ie.uima.type.supertype.Classification;
 
 
 /** The classification of the readability of a text. Different readability scores can be set as features of a respective annotation.
- * Updated by JCasGen Sun Aug 12 22:51:23 CEST 2018
+ * Updated by JCasGen Wed Aug 15 23:47:38 CEST 2018
  * XML source: /home/dogu3912/eclipse-workspace/code/semeval19-hyperpartisan-news-baseline/conf/uima/typesystems/NewsArticleTypeSystem.xml
  * @generated */
 public class Readability extends Classification {
