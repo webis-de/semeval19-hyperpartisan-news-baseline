@@ -5,6 +5,14 @@
   <version>0.0.1</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>conf</directory>
+      </resource>
+      <resource>
+        <directory>data</directory>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
