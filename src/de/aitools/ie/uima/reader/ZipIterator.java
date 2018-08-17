@@ -6,7 +6,11 @@ import java.io.UncheckedIOException;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Spliterator;
+import java.util.Spliterators;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -43,6 +47,21 @@ public class ZipIterator implements Iterator<InputStream>, AutoCloseable {
     } catch (final IOException e) {
       throw new UncheckedIOException(e);
     }
+  }
+  
+  /**
+   * Streams the input streams of this iterator.
+   * <p>
+   * When this method is called, this iterator should no longer be considered
+   * (except for closing the input file).
+   * </p>
+   * @return A stream of the remaining input stream objects
+   */
+  public Stream<InputStream> toStream() {
+    final Spliterator<InputStream> spliterator =
+        Spliterators.spliteratorUnknownSize(this, Spliterator.ORDERED);
+    final boolean parallel = false;
+    return StreamSupport.stream(spliterator, parallel);
   }
 
   @Override
