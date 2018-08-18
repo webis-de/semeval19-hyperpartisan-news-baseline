@@ -14,6 +14,12 @@ import java.util.stream.StreamSupport;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+/**
+ * An iterator over the files within a ZIP archive.
+ *
+ * @author johannes.kiesel@uni-weimar.de
+ *
+ */
 public class ZipIterator implements Iterator<InputStream>, AutoCloseable {
   
   private final ZipFile zipFile;
@@ -22,6 +28,8 @@ public class ZipIterator implements Iterator<InputStream>, AutoCloseable {
   
   private final Pattern fileNamePattern;
   
+  private InputStream last;
+  
   private ZipEntry next;
   
   public ZipIterator(final ZipFile zipFile, final Pattern fileNamePattern) {
@@ -29,6 +37,7 @@ public class ZipIterator implements Iterator<InputStream>, AutoCloseable {
     this.internIterator = this.zipFile.entries();
     this.fileNamePattern = fileNamePattern;
     this.next = null;
+    this.last = null;
     this.advance();
   }
 
@@ -43,7 +52,11 @@ public class ZipIterator implements Iterator<InputStream>, AutoCloseable {
     final ZipEntry current = this.next;
     this.advance();
     try {
-      return this.zipFile.getInputStream(current);
+      if (this.last != null) {
+        this.last.close();
+      }
+      this.last = this.zipFile.getInputStream(current);
+      return this.last;
     } catch (final IOException e) {
       throw new UncheckedIOException(e);
     }
@@ -66,6 +79,9 @@ public class ZipIterator implements Iterator<InputStream>, AutoCloseable {
 
   @Override
   public void close() throws IOException {
+    if (this.last != null) {
+      this.last.close();
+    }
     this.zipFile.close();
     this.next = null;
   }
@@ -75,7 +91,7 @@ public class ZipIterator implements Iterator<InputStream>, AutoCloseable {
       this.next = null;
       return;
     }
-    
+
     this.next = this.internIterator.nextElement();
     boolean nextMatches = this.nextMatchesPattern();
     
