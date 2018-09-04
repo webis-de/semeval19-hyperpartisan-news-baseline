@@ -1,9 +1,9 @@
 package de.aitools.ie.uima.reader;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Iterator;
-import java.util.zip.ZipFile;
+import java.util.stream.Stream;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
@@ -22,6 +22,7 @@ import de.aitools.ie.uima.type.news.ArticleMetadata;
 import de.aitools.ie.uima.type.news.Link;
 import de.aitools.ie.uima.type.news.Quotation;
 import de.aitools.ie.uima.type.supertype.Unit;
+import de.aitools.util.io.NamedInputStreamFactory;
 import de.aitools.util.uima.Pipeline;
 
 public class ArticleReader extends CollectionReader_ImplBase {
@@ -66,17 +67,14 @@ public class ArticleReader extends CollectionReader_ImplBase {
    */
   public static final String PARAM_INPUT =
       Pipeline.DEFAULT_COLLECTION_READER_INPUT_PARAMETER;
-
-  /**
-   * Parameter that specifies the encoding of the texts to be processed.
-   */
-  public static final String PARAM_INPUT_ENCODING = "encoding";
   
   // -------------------------------------------------------------------------
   // MEMBERS
   // -------------------------------------------------------------------------
   
-  private Iterator<Element> articleIterator;
+  private Stream<Element> streamOfStreams;
+  
+  private Iterator<Element> streams;
   
   private int read;
   
@@ -85,7 +83,8 @@ public class ArticleReader extends CollectionReader_ImplBase {
   // -------------------------------------------------------------------------
   
   public ArticleReader() {
-    this.articleIterator = null;
+    this.streamOfStreams = null;
+    this.streams = null;
     this.read = 0;
   }
   
@@ -98,15 +97,12 @@ public class ArticleReader extends CollectionReader_ImplBase {
     super.initialize();
     this.read = 0;
     try {
-      final String encoding = (String)
-          this.getConfigParameterValue(PARAM_INPUT_ENCODING);
-      final Charset charset = encoding == null
-          ? Charset.defaultCharset()
-          : Charset.forName(encoding);
-      
-      final ZipFile zipFile = new ZipFile(
-          (String) this.getConfigParameterValue(PARAM_INPUT), charset);
-      this.articleIterator = new ArticleCollectionIterator(zipFile);
+      final String input = (String) this.getConfigParameterValue(PARAM_INPUT);
+      final NamedInputStreamFactory factory = new NamedInputStreamFactory();
+      this.streamOfStreams = factory.stream(new File(input))
+          .filter(stream -> stream.getName().endsWith(".xml"))
+          .flatMap(stream -> new DomArticleIterator(stream).toStream());
+      this.streams = this.streamOfStreams.iterator();
       this.read = 0;
     } catch (final IOException e) {
       throw new ResourceInitializationException(e);
@@ -121,7 +117,7 @@ public class ArticleReader extends CollectionReader_ImplBase {
       final JCas jcas = cas.getJCas();
       final StringBuilder text = new StringBuilder();
 
-      final Element articleElement = this.articleIterator.next();
+      final Element articleElement = this.streams.next();
       this.addMetadata(articleElement, jcas);
       this.addNode(articleElement, jcas, text);
       jcas.setDocumentText(text.toString());
@@ -192,8 +188,7 @@ public class ArticleReader extends CollectionReader_ImplBase {
 
   @Override
   public boolean hasNext() {
-    if (this.articleIterator == null) { return false; }
-    return this.articleIterator.hasNext();
+    return this.streams.hasNext();
   }
 
   @Override
@@ -207,7 +202,7 @@ public class ArticleReader extends CollectionReader_ImplBase {
 
   @Override
   public void close() throws IOException {
-    this.articleIterator = null;
+    this.streamOfStreams.close();
   }
 
 }

@@ -8,6 +8,8 @@ import de.aitools.ie.uima.type.news.ArticleMetadata;
 
 public class Articles {
   
+  private Articles() { }
+  
   public static ArticleMetadata getMetadata(final JCas article) {
     final FSIterator<Annotation> metadataAnnotations =
         article.getAnnotationIndex(ArticleMetadata.type).iterator();

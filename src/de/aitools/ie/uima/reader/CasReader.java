@@ -1,7 +1,6 @@
 package de.aitools.ie.uima.reader;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
@@ -11,18 +10,16 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Spliterator;
 import java.util.Spliterators;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.ZipFile;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
 import org.apache.uima.cas.impl.XmiCasDeserializer;
 import org.apache.uima.jcas.JCas;
 import org.xml.sax.SAXException;
+
+import de.aitools.util.io.NamedInputStreamFactory;
 
 
 /**
@@ -36,13 +33,6 @@ import org.xml.sax.SAXException;
  * @see CasSerializer
  */
 public class CasReader implements Iterator<JCas> {
-  
-  // -------------------------------------------------------------------------
-  // LOGGING
-  // -------------------------------------------------------------------------
-  
-  private static final Logger LOG =
-      Logger.getLogger(CasReader.class.getName());
   
   // -------------------------------------------------------------------------
   // MEMBERS
@@ -130,24 +120,12 @@ public class CasReader implements Iterator<JCas> {
    * @param file The file to which to read the CAS(es) from
    * @return An iterator for opening input stream(s) for given file
    */
-  protected Stream<InputStream> openXmiStreamsForFile(final File file) {
+  protected Stream<? extends InputStream> openXmiStreamsForFile(final File file) {
     try {
-      if (this.isXmi(file)) {
-        LOG.finer("Open XMI file " + file);
-        return Stream.of(new FileInputStream(file));
-      } else if (this.isCompressedXmi(file)) {
-        LOG.finer("Open compressed XMI file " + file);
-        return Stream.of(new GZIPInputStream(new FileInputStream(file)));
-      } else if (this.isZipArchive(file)) {
-        LOG.finer("Open zip archive " + file);
-        @SuppressWarnings("resource")
-        final Stream<InputStream> zippedXmiFiles = new ZipIterator(
-            new ZipFile(file), Pattern.compile("^.*\\.xmi$")).toStream();
-        return zippedXmiFiles;
-      } else {
-        LOG.finer("Skipping to open file " + file);
-        return Stream.empty();
-      }
+
+      final NamedInputStreamFactory factory = new NamedInputStreamFactory();
+      return factory.stream(file)
+          .filter(stream -> stream.getName().endsWith(".xmi"));
     } catch (final IOException e) {
       throw new UncheckedIOException(e);
     }
