@@ -1,6 +1,7 @@
 package de.aitools.ie.uima;
 
 import java.io.FileOutputStream;
+import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -9,7 +10,7 @@ import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.cas.impl.XmiCasSerializer;
 import org.apache.uima.jcas.JCas;
 
-import de.aitools.ie.uima.reader.ArticleReader;
+import de.aitools.util.uima.AbstractCollectionReader;
 import de.aitools.util.uima.CollectionIterator;
 import de.aitools.util.uima.Pipeline;
 
@@ -27,8 +28,13 @@ public class Analyze {
   // -------------------------------------------------------------------------
   
   public static void main(final String[] args) throws Exception {
-    final String input = args[0];
-    final String output = args[1];
+    if (args.length < 2) {
+      throw new IllegalArgumentException(
+          "Usage: <input> [<input> [...]] <output>");
+    }
+    final String[] input = new String[args.length - 1];
+    System.arraycopy(args, 0, input, 0, input.length);
+    final String output = args[args.length - 1];
     
     final String typeSystemPath =
         Pipeline.DESCRIPTOR_PACKAGE_FOR_TYPE_SYSTEMS
@@ -40,14 +46,14 @@ public class Analyze {
         Pipeline.DESCRIPTOR_PACKAGE_FOR_AGGREGATE_ANALYSIS_ENGINES
         + "StylePipeline.xml";
     final String collectionReaderInputParameter =
-        ArticleReader.PARAM_INPUT;
+        AbstractCollectionReader.PARAMETER_INPUT;
     
     final CollectionIterator articles = new CollectionIterator(typeSystemPath,
         collectionReaderPath, collectionReaderInputParameter, input);
     final AnalysisEngine analysisEngine =
         Pipeline.createAnalysisEngine(analysisEnginePath);
 
-    LOG.info("Start to process " + input);
+    LOG.info("Start to process " + Arrays.toString(input));
     int count = 0;
     final int logEach = 1000;
     try (final ZipOutputStream zipOutputStream =

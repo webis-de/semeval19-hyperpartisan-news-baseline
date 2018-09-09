@@ -5,10 +5,7 @@ import java.io.InputStream;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.Spliterator;
-import java.util.Spliterators;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,6 +16,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import de.aitools.util.Streams;
 
 public class DomArticleIterator implements Iterator<Element> {
   
@@ -32,6 +31,7 @@ public class DomArticleIterator implements Iterator<Element> {
     try {
       final DocumentBuilder builder = builderFactory.newDocumentBuilder();
       final Document document = builder.parse(input);
+      input.close();
       this.nodeList = document.getElementsByTagName(ArticleReader.TAG_ARTICLE);
       this.index = 0;
     } catch (final ParserConfigurationException e) {
@@ -48,10 +48,7 @@ public class DomArticleIterator implements Iterator<Element> {
   }
   
   public Stream<Element> toStream() {
-    final Spliterator<Element> spliterator =
-        Spliterators.spliteratorUnknownSize(this, Spliterator.ORDERED);
-    final boolean parallel = false;
-    return StreamSupport.stream(spliterator, parallel);
+    return Streams.stream(this);
   }
 
   @Override

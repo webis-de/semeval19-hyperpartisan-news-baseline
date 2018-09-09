@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.Spliterator;
-import java.util.Spliterators;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
@@ -16,6 +13,8 @@ import org.apache.uima.collection.CollectionReader;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.InvalidXMLException;
+
+import de.aitools.util.Streams;
 
 /**
  * A one-time iterator over a collection.
@@ -83,7 +82,7 @@ public class CollectionIterator implements Iterator<JCas> {
    */
   public CollectionIterator(
       final String typeSystemName, final String collectionReaderPath,
-      final String inputParameter, final String input)
+      final String inputParameter, final String... input)
   throws IOException, InvalidXMLException, ResourceInitializationException {
     this(typeSystemName, Pipeline.createCollectionReader(
         collectionReaderPath, inputParameter, input));
@@ -131,10 +130,7 @@ public class CollectionIterator implements Iterator<JCas> {
    * @return A stream of the remaining CAS objects
    */
   public Stream<JCas> toStream() {
-    final Spliterator<JCas> spliterator =
-        Spliterators.spliteratorUnknownSize(this, Spliterator.ORDERED);
-    final boolean parallel = false;
-    return StreamSupport.stream(spliterator, parallel);
+    return Streams.stream(this).onClose(() -> this.collectionReader.destroy());
   }
 
 }

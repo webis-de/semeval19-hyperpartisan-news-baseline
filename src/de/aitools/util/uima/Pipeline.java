@@ -36,13 +36,6 @@ public class Pipeline {
   // -------------------------------------------------------------------------
   // CONSTANTS
   // -------------------------------------------------------------------------
-
-  /**
-   * Default name for the parameter used to specify the input directory or file
-   * of a collection reader.
-   */
-  public static final String DEFAULT_COLLECTION_READER_INPUT_PARAMETER = 
-      "input";
   
   /**
    * Directory in the class path that contains the primitive analysis engine
@@ -122,7 +115,7 @@ public class Pipeline {
    */
   public static CollectionReader createCollectionReader(
       final String collectionReaderPath,
-      final String inputParameter, final String input)
+      final String inputParameter, final String... input)
   throws IOException, InvalidXMLException, ResourceInitializationException {
     LOG.info("Initializing CollectionReader " + collectionReaderPath + " with "
         + inputParameter + " = " + input);

@@ -10,31 +10,40 @@
 <configurationParameters>
 <configurationParameter>
 <name>input</name>
-<description>Input dataset ZIP file</description>
+<description>input fil(s) or directories(s)</description>
 <type>String</type>
-<multiValued>false</multiValued>
+<multiValued>true</multiValued>
 <mandatory>true</mandatory>
 </configurationParameter>
 <configurationParameter>
-<name>encoding</name>
-<description>Character encoding for the documents.  If not specified,
-                   the default system encoding will be used.  Note that this parameter
-                   only applies if there is no CAS Initializer provided; otherwise,
-                   it is the CAS Initializer's responsibility to deal with character
-                   encoding issues.</description>
-<type>String</type>
-<multiValued>false</multiValued>
-<mandatory>false</mandatory>
-</configurationParameter>
-</configurationParameters>
+        <name>input.readrecursive</name>
+        <description>If the input is a directory, read also files in subdirectories (true) or only directly in that directory (false)</description>
+        <type>Boolean</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>input.readlinks</name>
+        <description>Follow symbolic links when determining all input files</description>
+        <type>Boolean</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
 <configurationParameterSettings>
 <nameValuePair>
-<name>encoding</name>
-<value>
-<string>utf-8</string>
-</value>
-</nameValuePair>
-</configurationParameterSettings>
+        <name>input.readrecursive</name>
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>input.readlinks</name>
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
 <typeSystemDescription>
 <imports>
 <import name="org.apache.uima.examples.SourceDocumentInformation"/>
