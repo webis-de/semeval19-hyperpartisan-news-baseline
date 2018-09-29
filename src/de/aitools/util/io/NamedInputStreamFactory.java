@@ -99,6 +99,7 @@ public class NamedInputStreamFactory {
       LOG.info("Opening streams for " + root);
       return Streams.flatten(Files.walk(
             root.toPath(), this.getWalkDepth(), this.getWalkOptions())
+          .filter(path -> Files.isRegularFile(path))
           .map(path -> this.streamFile(path.toFile())));
     } catch (final IOException e) {
       throw new UncheckedIOException(e);
