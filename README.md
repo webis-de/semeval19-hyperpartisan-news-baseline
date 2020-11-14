@@ -1,4 +1,4 @@
-SemEval19 Hyperpartisan News Baseline
+SEMEVAL19 Hyperpartisan News Baseline
 =====================================
 
     mvn package
